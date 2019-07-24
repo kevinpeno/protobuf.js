@@ -650,11 +650,11 @@ function buildService(ref, service) {
             "@returns {undefined}",
             "@variation 1"
         ]);
-        push("Object.defineProperty(" + escapeName(service.name) + ".prototype" + util.safeProp(lcName) + " = function " + escapeName(lcName) + "(request, callback) {");
+        push("Object.defineProperties(" + escapeName(service.name) + ".prototype" + util.safeProp(lcName) + " = function " + escapeName(lcName) + "(request, callback) {");
             ++indent;
             push("return this.rpcCall(" + escapeName(lcName) + ", $root." + exportName(method.resolvedRequestType) + ", $root." + exportName(method.resolvedResponseType) + ", request, callback);");
             --indent;
-        push("}, \"name\", { value: " + JSON.stringify(method.name) + " });");
+        push("}, {\"name\": { value: " + JSON.stringify(method.name) + " }, \"FQDN\": { value: " + JSON.stringify(method.fullName.slice(1)) + " }, \"requestFQDN\": { value: " + JSON.stringify(method.resolvedRequestType.fullName.slice(1)) + " }, \"responseFQDN\": { value: " + JSON.stringify(method.resolvedResponseType.fullName.slice(1)) + " }});");
         if (config.comments)
             push("");
         pushComment([

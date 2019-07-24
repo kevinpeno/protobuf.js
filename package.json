@@ -37,7 +37,7 @@
     "test": "tape -r ./lib/tape-adapter tests/*.js tests/node/*.js",
     "test-types": "tsc tests/comp_typescript.ts --lib es2015 --strictNullChecks --experimentalDecorators --emitDecoratorMetadata && tsc tests/data/test.js.ts --lib es2015 --noEmit --strictNullChecks && tsc tests/data/rpc.ts --lib es2015 --noEmit --strictNullChecks",
     "types": "node bin/pbts --main --global protobuf --out index.d.ts src/ lib/aspromise/index.js lib/base64/index.js lib/codegen/index.js lib/eventemitter/index.js lib/float/index.js lib/fetch/index.js lib/inquire/index.js lib/path/index.js lib/pool/index.js lib/utf8/index.js && npm run test-types",
-    "make": "npm run test && npm run types && npm run build && npm run lint",
+    "make": "npm run lint && npm run test && npm run build && npm run types && npm run docs",
     "release": "npm run make && npm run changelog"
   },
   "dependencies": {
